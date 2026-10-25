@@ -1,21 +1,22 @@
 @import "tailwindcss";
 @import "@fontsource-variable/inter";
-@import "@fontsource-variable/playfair-display";
 
 @theme {
-  --color-charcoal: #2D3748;
-  --color-charcoal-light: #4A5568;
-  --color-charcoal-dark: #1A202C;
-  --color-amber: #E8850C;
-  --color-amber-light: #F6A535;
-  --color-amber-dark: #C06A00;
-  --color-void: #0A0A0A;
-  --color-void-light: #141414;
-  --color-void-lighter: #1E1E1E;
-  --color-surface: #FAFAFA;
-  --color-surface-warm: #F5F0EB;
+  --color-navy: #0B1120;
+  --color-navy-light: #162036;
+  --color-navy-lighter: #1E2D4A;
+  --color-navy-surface: #243351;
+  --color-slate-dim: #334155;
+  --color-slate-muted: #64748B;
+  --color-green-accent: #10B981;
+  --color-green-dim: #065F46;
+  --color-amber-accent: #F59E0B;
+  --color-amber-dim: #92400E;
+  --color-red-accent: #EF4444;
+  --color-red-dim: #991B1B;
+  --color-blue-accent: #3B82F6;
+  --color-blue-dim: #1E40AF;
 
-  --font-display: "Playfair Display Variable", Georgia, serif;
   --font-body: "Inter Variable", system-ui, sans-serif;
 }
 
@@ -26,34 +27,48 @@ html {
 body {
   font-family: var(--font-body);
   margin: 0;
+  background: var(--color-navy);
+  color: #E2E8F0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--color-void);
+  background: var(--color-navy);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-charcoal);
-  border-radius: 4px;
+  background: var(--color-slate-dim);
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-amber);
+  background: var(--color-blue-accent);
 }
 
 ::selection {
-  background: var(--color-amber);
+  background: var(--color-blue-accent);
   color: white;
 }
 
-/* Hide scrollbar for horizontal scroll on mobile */
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+/* Tabular numbers for financial data */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
 }
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
+
+/* Drag-drop zone */
+.drop-zone-active {
+  border-color: var(--color-blue-accent) !important;
+  background: rgba(59, 130, 246, 0.08) !important;
+}
+
+/* Custom input styles */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.7);
+}
+
+/* Print styles */
+@media print {
+  body { background: white; color: black; }
 }

@@ -12,11 +12,12 @@ export default async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
 
   try {
-    // GET — fetch latest config
+    // GET — fetch latest config (exclude inclusions rows)
     if (req.method === 'GET') {
       const { data, error } = await supabase
         .from('estimator_configs')
         .select('*')
+        .neq('updated_by', '__inclusions__')
         .order('updated_at', { ascending: false })
         .limit(1)
         .single();
@@ -34,10 +35,11 @@ export default async function handler(req, res) {
       const { config, updated_by } = req.body || {};
       if (!config) return res.status(400).json({ error: 'config required' });
 
-      // Check if a config exists
+      // Check if a config exists (exclude inclusions rows)
       const { data: existing } = await supabase
         .from('estimator_configs')
         .select('id')
+        .neq('updated_by', '__inclusions__')
         .order('updated_at', { ascending: false })
         .limit(1)
         .single();

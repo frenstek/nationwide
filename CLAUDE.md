@@ -1,48 +1,55 @@
-# Nationwide Projects
+# NPI Expense Tracker
 
-Marketing website and estimator tool for Nationwide Projects (NWPI) -- a construction company. Features a public-facing marketing site, project estimator, and inclusions list.
+Expense/invoice tracker for Nationwide Projects Investments (NPI). Tracks invoices across three business units: Grocery, Resort, and Servo.
 
 ## Tech Stack
 
 - React 19 + Vite 8 + Tailwind CSS 4
-- Supabase (PostgreSQL backend)
-- Single-page app
+- Supabase (PostgreSQL backend, shared DB with nwpi-pm)
+- jsPDF for PDF report export
+- framer-motion for page transitions
+- Single-page app (no router)
 
-## Setup
+## Auth
 
-```bash
-git clone https://github.com/kraegeronimo-tech/nationwide.git
-cd nationwide
-npm install
-npm run dev
-```
+- Admin password: `npi2026admin` (full CRUD + reports)
+- Partner password: `npi2026view` (view-only + reports)
+- Stored in sessionStorage
+
+## Database
+
+- Table: `npi_invoices` (see `npi-invoices-migration.sql`)
+- Supabase project: pzzdsphxwpywnqkuxutl (shared with nwpi-pm, tables prefixed npi_)
+
+## API
+
+Single endpoint: `/api/npi.js` with `?action=` parameter:
+- `setup` (POST) -- creates table
+- `list` (GET) -- list invoices with filters
+- `stats` (GET) -- aggregate statistics
+- `create` (POST) -- create invoice with optional file upload (base64)
+- `update` (PATCH) -- update invoice
+- `delete` (DELETE) -- delete invoice
+- `report` (GET) -- detailed report data
 
 ## Environment Variables
 
-Environment variables are configured on Vercel only (server-side API functions):
-
+Configured on Vercel (server-side):
 ```
-SUPABASE_URL=your_supabase_project_url
-SUPABASE_SERVICE_KEY=your_supabase_service_key
+SUPABASE_URL=https://pzzdsphxwpywnqkuxutl.supabase.co
+SUPABASE_SERVICE_KEY=<service_role_key>
 ```
-
-> These are server-only variables -- not exposed to the client.
 
 ## Deployment
 
 ```bash
-npx vercel --prod --yes
+cd nationwide && npx vercel --prod --yes
 ```
 
 **Vercel URL:** https://nwpi.au
 
-## Features
-
-- Marketing site with company info
-- Project estimator tool
-- Inclusions list
-
 ## Key Notes
 
-- Custom domain: nwpi.au
-- Supabase is shared with the nwpi-pm project (same database, different table prefixes).
+- Custom domain: nwpi.au (maintenance mode lifted -- now expense tracker)
+- Supabase is shared with the nwpi-pm project (same database, different table prefixes)
+- File uploads go to Supabase Storage bucket 'documents' under path 'npi-invoices/'

@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nationwide Projects Investments — Capability Statement</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: #fff; color: #1a1a1a; line-height: 1.6; font-size: 13px; }
+    .page { max-width: 900px; margin: 0 auto; }
+
+    /* ── COVER ── */
+    .cover {
+      background: #0a0a0a;
+      height: 1320px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .cover-hero {
+      position: absolute;
+      top: 0; right: 0; bottom: 0; left: 0;
+      background: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&h=800&fit=crop') center/cover;
+      opacity: 0.12;
+    }
+    /* Gradient overlay for depth */
+    .cover-hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 50%;
+      background: linear-gradient(transparent, #0a0a0a);
+    }
+    .cover-top {
+      position: relative;
+      z-index: 2;
+      padding: 56px 56px 0;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .cover-logo-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 56px;
+    }
+    .cover-logo-row img {
+      width: 90px;
+      border-radius: 10px;
+      background: #fff;
+      padding: 8px;
+    }
+    .cover-logo-row .doc-type {
+      font-size: 11px;
+      font-weight: 700;
+      color: #E8850C;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+    .amber-bar { width: 60px; height: 4px; background: #E8850C; margin-bottom: 24px; }
+    .cover h1 { font-size: 52px; font-weight: 900; color: #fff; line-height: 1.05; margin-bottom: 10px; }
+    .cover h1 span { color: #E8850C; }
+    .cover .tagline { color: rgba(255,255,255,0.45); font-size: 15px; margin-bottom: 20px; letter-spacing: 0.3px; }
+    .cover .tagline-sub {
+      color: rgba(255,255,255,0.25);
+      font-size: 12px;
+      line-height: 1.7;
+      max-width: 520px;
+      margin-bottom: 48px;
+    }
+
+    .cover-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 0;
+      margin-top: auto;
+    }
+    .cstat {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 24px;
+      text-align: center;
+    }
+    .cstat .val { font-family: 'JetBrains Mono', monospace; font-size: 32px; font-weight: 700; color: #E8850C; }
+    .cstat .lbl { font-size: 10px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+
+    /* Photo strip */
+    .cover-photos {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3px;
+      padding: 24px 56px;
+    }
+    .cover-photos .photo {
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .cover-photos .photo::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 70px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    }
+    .cover-photos .photo .caption {
+      position: absolute;
+      bottom: 10px;
+      left: 12px;
+      z-index: 3;
+      font-size: 10px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 0.3px;
+    }
+
+    .cover-meta {
+      position: relative;
+      z-index: 2;
+      padding: 18px 56px;
+      background: rgba(232,133,12,0.08);
+      border-top: 1px solid rgba(232,133,12,0.2);
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: rgba(255,255,255,0.35);
+    }
+    .cover-meta strong { color: rgba(255,255,255,0.7); }
+
+    /* ── SECTIONS ── */
+    .s { padding: 28px 40px; }
+    .s-grey { background: #f8f9fa; }
+    .s-dark { background: #0a0a0a; color: #fff; }
+    .s-title { font-size: 16px; font-weight: 800; color: #111; margin-bottom: 3px; }
+    .s-dark .s-title { color: #fff; }
+    .s-sub { font-size: 11px; color: #9ca3af; margin-bottom: 14px; }
+    .s-dark .s-sub { color: rgba(255,255,255,0.35); }
+    .s-bar { width: 36px; height: 3px; background: #E8850C; margin-bottom: 14px; }
+
+    /* Info grid */
+    .info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px; }
+    .info-box { padding: 14px 16px; background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; }
+    .info-box h4 { font-size: 9px; font-weight: 700; color: #E8850C; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .info-box .big { font-size: 14px; font-weight: 700; color: #111; }
+    .info-box p { font-size: 12px; color: #6b7280; }
+
+    /* Services */
+    .srv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .srv { border: 1px solid #1e293b; border-radius: 8px; padding: 16px; background: #111827; }
+    .srv h4 { font-size: 14px; font-weight: 700; color: #E8850C; margin-bottom: 4px; }
+    .srv p { font-size: 11px; color: rgba(255,255,255,0.4); margin-bottom: 8px; }
+    .srv ul { list-style: none; padding: 0; }
+    .srv li { font-size: 11px; color: rgba(255,255,255,0.55); padding: 1px 0 1px 12px; position: relative; }
+    .srv li::before { content: '—'; position: absolute; left: 0; color: #E8850C; font-size: 10px; }
+
+    /* Stats */
+    .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 16px; }
+    .stat-box { text-align: center; padding: 12px; background: #111827; border-radius: 8px; border: 1px solid #1e293b; }
+    .stat-box .val { font-family: 'JetBrains Mono', monospace; font-size: 20px; font-weight: 700; color: #E8850C; }
+    .stat-box .lbl { font-size: 9px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.5px; }
+
+    /* Projects with photos */
+    .proj-showcase {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .proj-card {
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #e5e7eb;
+    }
+    .proj-card img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      display: block;
+    }
+    .proj-card .proj-info {
+      padding: 10px 12px;
+    }
+    .proj-card .addr { font-size: 12px; font-weight: 700; color: #111; }
+    .proj-card .loc { font-size: 11px; color: #6b7280; }
+    .proj-card .status { display: inline-block; font-size: 9px; font-weight: 700; padding: 2px 8px; border-radius: 4px; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    .proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .proj { border: 1px solid #e5e7eb; border-radius: 8px; padding: 12px; }
+    .proj .addr { font-size: 12px; font-weight: 700; color: #111; }
+    .proj .loc { font-size: 11px; color: #6b7280; }
+    .proj .status { display: inline-block; font-size: 9px; font-weight: 700; padding: 2px 8px; border-radius: 4px; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .proj .active { background: #dcfce7; color: #16a34a; }
+    .proj .planning { background: #fef3c7; color: #d97706; }
+
+    /* Table */
+    .cap-table { width: 100%; border-collapse: collapse; }
+    .cap-table th { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #6b7280; padding: 8px 12px; text-align: left; background: #f3f4f6; border-bottom: 1px solid #e5e7eb; }
+    .cap-table td { padding: 8px 12px; font-size: 12px; border-bottom: 1px solid #f3f4f6; color: #374151; vertical-align: top; }
+    .cap-table .lbl { font-weight: 600; color: #111; width: 160px; }
+
+    /* Process */
+    .proc-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    .proc { padding: 14px; border: 1px solid #e5e7eb; border-radius: 8px; }
+    .proc .num { font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 700; color: #E8850C; margin-bottom: 4px; }
+    .proc h4 { font-size: 12px; font-weight: 700; color: #111; margin-bottom: 3px; }
+    .proc p { font-size: 11px; color: #6b7280; line-height: 1.4; }
+
+    /* Values */
+    .val-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    .val-card { padding: 14px; border: 1px solid #e5e7eb; border-radius: 8px; text-align: center; }
+    .val-card h4 { font-size: 12px; font-weight: 700; color: #111; margin-bottom: 3px; }
+    .val-card p { font-size: 10px; color: #6b7280; }
+
+    /* Mission */
+    .mission-box { padding: 14px 16px; border-radius: 8px; margin-bottom: 12px; }
+    .mission-box h4 { font-size: 12px; font-weight: 700; margin-bottom: 4px; }
+    .mission-box p { font-size: 12px; color: #374151; }
+    .mission-amber { background: #fffbeb; border: 1px solid #fde68a; }
+    .mission-green { background: #f0fdf4; border: 1px solid #bbf7d0; }
+
+    /* Contact */
+    .contact-bar { background: #0a0a0a; padding: 24px 40px; display: flex; justify-content: space-between; align-items: center; }
+    .contact-bar h3 { font-size: 16px; font-weight: 800; color: #fff; }
+    .contact-bar .sub { font-size: 11px; color: rgba(255,255,255,0.3); }
+    .c-info { display: flex; gap: 28px; }
+    .c-item .cl { font-size: 8px; color: #E8850C; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
+    .c-item .cv { font-size: 12px; color: #fff; font-weight: 500; }
+
+    .divider { height: 1px; background: #e5e7eb; }
+
+    /* Page break control */
+    .page-break { page-break-after: always; break-after: page; }
+    .no-break { page-break-inside: avoid; break-inside: avoid; }
+    .s { page-break-inside: avoid; break-inside: avoid; }
+    .cover { page-break-after: always; break-after: page; }
+    .info-grid { page-break-inside: avoid; break-inside: avoid; }
+    .srv-grid { page-break-inside: avoid; break-inside: avoid; }
+    .proj-grid { page-break-inside: avoid; break-inside: avoid; }
+    .proj-showcase { page-break-inside: avoid; break-inside: avoid; }
+    .cap-table { page-break-inside: avoid; break-inside: avoid; }
+    .proc-row { page-break-inside: avoid; break-inside: avoid; }
+    .val-grid { page-break-inside: avoid; break-inside: avoid; }
+    .stats-row { page-break-inside: avoid; break-inside: avoid; }
+    .contact-bar { page-break-inside: avoid; break-inside: avoid; }
+    .mission-amber, .mission-green { page-break-inside: avoid; break-inside: avoid; }
+
+    @media print {
+      .s { padding: 20px 32px; }
+      body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .cover { height: 100vh !important; min-height: 100vh !important; }
+      .s { page-break-inside: avoid; break-inside: avoid; }
+      .cover { page-break-after: always; break-after: page; }
+      table { page-break-inside: avoid; break-inside: avoid; }
+      tr { page-break-inside: avoid; break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ═══ COVER ═══ -->
+  <div class="cover">
+    <div class="cover-hero"></div>
+    <div class="cover-top">
+      <div class="cover-logo-row">
+        <img src="npi-logo-full.jpeg" alt="NPI Logo">
+        <div class="doc-type">Capability Statement</div>
+      </div>
+
+      <div class="amber-bar"></div>
+      <h1>Nationwide Projects<br><span>& Investments</span></h1>
+      <div class="tagline">Residential Construction &bull; Commercial &bull; Infrastructure &bull; Remote Housing &bull; Project Management</div>
+      <div class="tagline-sub">End-to-end construction and project management across Melbourne metro, regional Victoria, and remote Australia. From custom homes to community infrastructure — we build wherever the need exists.</div>
+
+      <div class="cover-stats">
+        <div class="cstat"><div class="val">13+</div><div class="lbl">Active Projects</div></div>
+        <div class="cstat"><div class="val">AUS</div><div class="lbl">Nationwide Capability</div></div>
+        <div class="cstat"><div class="val">VIC &bull; QLD</div><div class="lbl">Current Operations</div></div>
+        <div class="cstat"><div class="val">2025</div><div class="lbl">Established</div></div>
+      </div>
+    </div>
+
+    <!-- Property photo strip -->
+    <div class="cover-photos">
+      <div class="photo" style="background-image: url('https://images.listonce.com.au/custom/l/listings/42-epsom-road-ascot-vale-vic-3032/582/01781582_img_01.jpg?BRM3kxXYTQY')">
+        <div class="caption">42 Epsom Rd, Ascot Vale</div>
+      </div>
+      <div class="photo" style="background-image: url('https://images.listonce.com.au/custom/l/listings/42-epsom-road-ascot-vale-vic-3032/582/01781582_img_05.jpg?Dx7V0pQh-cU')">
+        <div class="caption">Interior — Ascot Vale</div>
+      </div>
+      <div class="photo" style="background-image: url('https://images.listonce.com.au/custom/l/listings/42-epsom-road-ascot-vale-vic-3032/582/01781582_img_03.jpg?CO0EDlDSBLE')">
+        <div class="caption">Living — Ascot Vale</div>
+      </div>
+      <div class="photo" style="background-image: url('https://images.listonce.com.au/custom/l/listings/42-epsom-road-ascot-vale-vic-3032/582/01781582_img_10.jpg?onQESgz_1l8')">
+        <div class="caption">Site — 564m&sup2;</div>
+      </div>
+    </div>
+
+    <div class="cover-meta">
+      <span><strong>ABN:</strong> 28 693 332 320</span>
+      <span><strong>Web:</strong> nationwideprojects.app</span>
+      <span><strong>Director:</strong> Harsimran Singh</span>
+      <span><strong>Capability Statement</strong> — June 2026</span>
+    </div>
+  </div>
+
+  <!-- ═══ COMPANY PROFILE ═══ -->
+  <div class="s">
+    <div class="s-bar"></div>
+    <div class="s-title">Company Profile</div>
+    <div class="s-sub">About Nationwide Projects & Investments</div>
+
+    <div class="info-grid">
+      <div class="info-box">
+        <h4>Company</h4>
+        <div class="big">Nationwide Projects Investments Pty Ltd</div>
+        <p>ABN: 28 693 332 320</p>
+      </div>
+      <div class="info-box">
+        <h4>Directors</h4>
+        <div class="big">Harsimran Singh</div>
+      </div>
+      <div class="info-box">
+        <h4>Established</h4>
+        <div class="big">December 2025</div>
+        <p>Melbourne, Victoria</p>
+      </div>
+    </div>
+
+    <div class="mission-amber">
+      <h4>Mission</h4>
+      <p>To deliver construction solutions of any scale, anywhere in Australia — from urban residential developments to remote community infrastructure. We build wherever the need exists, adapting our capability to the project, the environment, and the community.</p>
+    </div>
+    <div class="mission-green">
+      <h4>Vision</h4>
+      <p>To be Australia's most versatile construction partner — capable of deploying to any state, any terrain, and any project type. From Melbourne metro to the tip of Cape York, we bring the same standard of quality, transparency, and reliability.</p>
+    </div>
+  </div>
+
+  <!-- ═══ SERVICES ═══ -->
+  <div class="s s-dark">
+    <div class="s-bar"></div>
+    <div class="s-title">Core Services</div>
+    <div class="s-sub">Full-spectrum construction capability — any project type, anywhere in Australia</div>
+
+    <div class="srv-grid">
+      <div class="srv">
+        <h4>Residential Construction</h4>
+        <p>Custom homes, multi-unit developments, and community housing — urban and remote.</p>
+        <ul>
+          <li>Custom Home Builds</li>
+          <li>Knockdown & Rebuild</li>
+          <li>Multi-Unit / Townhouse Developments</li>
+          <li>Duplex & Villa Construction</li>
+          <li>NDIS SDA Custom & Modular Homes</li>
+          <li>Remote Community Housing</li>
+        </ul>
+      </div>
+      <div class="srv">
+        <h4>Commercial & Infrastructure</h4>
+        <p>Commercial builds, civil works, and community infrastructure projects.</p>
+        <ul>
+          <li>Commercial Fit-Outs & Builds</li>
+          <li>Community Facilities & Service Buildings</li>
+          <li>Industrial & Warehouse Construction</li>
+          <li>Civil Works & Earthworks</li>
+          <li>Roads, Drainage & Utilities</li>
+          <li>Mixed-Use Developments</li>
+        </ul>
+      </div>
+      <div class="srv">
+        <h4>Design, Build & Manage</h4>
+        <p>End-to-end — from concept design through to handover, managed on our in-house platform.</p>
+        <ul>
+          <li>Architectural Design Coordination</li>
+          <li>Engineering & Working Drawings</li>
+          <li>Building Permit Management</li>
+          <li>Digital Estimating & Quoting</li>
+          <li>Client Portal (nationwideprojects.app)</li>
+          <li>Budget, Schedule & Progress Tracking</li>
+        </ul>
+      </div>
+      <div class="srv">
+        <h4>Pre-Construction & Approvals</h4>
+        <p>Complete pre-build services — permits, reports, demolition, site preparation.</p>
+        <ul>
+          <li>Demolition & Site Clearing</li>
+          <li>Soil Testing & Geotechnical</li>
+          <li>Electrical & Gas Abolishment</li>
+          <li>Fire Engineering Reports</li>
+          <li>Building Permit Applications</li>
+          <li>Environmental & Heritage Assessments</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-box"><div class="val">13+</div><div class="lbl">Active Projects</div></div>
+      <div class="stat-box"><div class="val">2</div><div class="lbl">States (VIC & QLD)</div></div>
+      <div class="stat-box"><div class="val">5</div><div class="lbl">Build Types</div></div>
+      <div class="stat-box"><div class="val">AUS</div><div class="lbl">Nationwide Capable</div></div>
+    </div>
+  </div>
+
+  <!-- ═══ ACTIVE PROJECTS ═══ -->
+  <div class="s">
+    <div class="s-bar"></div>
+    <div class="s-title">Current Project Portfolio</div>
+    <div class="s-sub">13 active projects across Melbourne and regional Victoria — with operations expanding into Cape York, QLD</div>
+
+    <!-- Featured projects with images -->
+    <div class="proj-showcase">
+      <div class="proj-card">
+        <img src="https://images.listonce.com.au/custom/l/listings/42-epsom-road-ascot-vale-vic-3032/582/01781582_img_01.jpg?BRM3kxXYTQY" alt="42 Epsom Rd">
+        <div class="proj-info">
+          <div class="addr">42 Epsom Rd</div>
+          <div class="loc">Ascot Vale, VIC</div>
+          <span class="status active">Active</span>
+        </div>
+      </div>
+      <div class="proj-card">
+        <img src="https://images.listonce.com.au/custom/l/listings/42-epsom-road-ascot-vale-vic-3032/582/01781582_img_06.jpg?5mWgZlI9ygE" alt="49 Bank St">
+        <div class="proj-info">
+          <div class="addr">49 Bank St</div>
+          <div class="loc">Box Hill, VIC — 6 Townhouses</div>
+          <span class="status active">Active</span>
+        </div>
+      </div>
+      <div class="proj-card">
+        <img src="https://images.listonce.com.au/custom/l/listings/42-epsom-road-ascot-vale-vic-3032/582/01781582_img_09.jpg?jpuaJDw4OkE" alt="81 Morey Rd">
+        <div class="proj-info">
+          <div class="addr">81 Morey Road</div>
+          <div class="loc">Beaumaris, VIC</div>
+          <span class="status planning">Planning</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- All projects list -->
+    <div class="proj-grid">
+      <div class="proj"><div class="addr">4/11-13 Milgate St</div><div class="loc">Oakleigh South, VIC</div><span class="status active">Active</span></div>
+      <div class="proj"><div class="addr">101 Warringa Crescent</div><div class="loc">Hoppers Crossing, VIC</div><span class="status active">Active</span></div>
+      <div class="proj"><div class="addr">26 Avondale St</div><div class="loc">Springvale, VIC</div><span class="status active">Active</span></div>
+      <div class="proj"><div class="addr">13 Keogh St</div><div class="loc">Burwood, VIC</div><span class="status active">Active</span></div>
+      <div class="proj"><div class="addr">56 Gardeners Rd</div><div class="loc">Bentleigh East, VIC</div><span class="status active">Active</span></div>
+      <div class="proj"><div class="addr">26 Bond St</div><div class="loc">Ringwood, VIC</div><span class="status planning">Planning</span></div>
+      <div class="proj"><div class="addr">6 Strickland Rd</div><div class="loc">East Bendigo, VIC</div><span class="status active">Active</span></div>
+      <div class="proj"><div class="addr">41 Nelson St</div><div class="loc">Ringwood, VIC</div><span class="status active">Active</span></div>
+      <div class="proj"><div class="addr">6 Thomas St</div><div class="loc">Clayton, VIC</div><span class="status active">Active</span></div>
+      <div class="proj"><div class="addr">105 Dunnes Rd</div><div class="loc">Mt Martha, VIC</div><span class="status active">Active</span></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══ CONSTRUCTION CAPABILITIES ═══ -->
+  <div class="s s-grey">
+    <div class="s-bar"></div>
+    <div class="s-title">Construction Capabilities</div>
+    <div class="s-sub">Technical capacity and project delivery</div>
+
+    <table class="cap-table">
+      <tbody>
+        <tr><td class="lbl">Delivery Methods</td><td>Design & Construct, Construction Management, Traditional Lump Sum, Project Management, Joint Venture / Partnership</td></tr>
+        <tr><td class="lbl">Residential</td><td>Custom homes, knockdown-rebuild, townhouses, duplexes, villas, NDIS SDA homes, modular (Panellock), remote community housing, social & affordable housing</td></tr>
+        <tr><td class="lbl">Commercial</td><td>Office fit-outs, retail, hospitality, industrial/warehouse, mixed-use, community facilities</td></tr>
+        <tr><td class="lbl">Infrastructure</td><td>Civil works, earthworks, roads, drainage, utilities, site preparation, environmental remediation</td></tr>
+        <tr><td class="lbl">Construction Types</td><td>Single & double storey, slab-on-ground, elevated/stilt (flood/cyclone), conventional, modular/prefab, cyclone-rated (Wind Region A through D)</td></tr>
+        <tr><td class="lbl">Specialist</td><td>NDIS SDA accessible housing, remote/Indigenous community housing, cyclone-rated builds, tropical design, modular rapid-deploy</td></tr>
+        <tr><td class="lbl">Scope</td><td>Full lifecycle — from feasibility and design through demolition, permits, construction, and defect-free handover</td></tr>
+        <tr><td class="lbl">Technology</td><td>In-house PM platform (nationwideprojects.app) — digital estimating, client portal, budget tracking, daily logs, photo documentation, purchase orders, invoicing</td></tr>
+        <tr><td class="lbl">Workforce</td><td>In-house project managers, site supervisors, estimators. <strong>National subcontractor and trades network covering all states and territories across Australia</strong> — able to source, vet, and manage trades anywhere in the country.</td></tr>
+        <tr><td class="lbl">Geographic Coverage</td><td><strong>All of Australia.</strong> Currently operating in VIC (Melbourne metro, regional) and QLD (Cape York). Workforce and trades network spans every state and territory — able to mobilise to any location, urban, regional, or remote.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ═══ REMOTE HOUSING ═══ -->
+  <div class="s">
+    <div class="s-bar"></div>
+    <div class="s-title">National Deployment & Remote Capability</div>
+    <div class="s-sub">We go where the project is — urban, regional, or remote. Any state, any terrain.</div>
+
+    <table class="cap-table">
+      <tbody>
+        <tr><td class="lbl">National Reach</td><td><strong>Able to mobilise and deploy construction teams to any location in Australia</strong> — metro, regional, or remote. Our model is built for mobility — we establish local supply chains, source trades, and manage logistics wherever the project demands.</td></tr>
+        <tr><td class="lbl">Current Operations</td><td><strong>VIC:</strong> 13 active residential projects across Melbourne metro and regional Victoria. <strong>QLD:</strong> Active operations in Cape York (Seisia, Northern Peninsula Area) — community supermarket and remote infrastructure.</td></tr>
+        <tr><td class="lbl">Remote Construction</td><td>Purpose-built for Australia's toughest environments. Cyclone-rated (Wind Region A–D), elevated builds for flood zones, termite-resistant materials, tropical design (ventilation, shade, passive cooling), extreme heat/cold adaptation.</td></tr>
+        <tr><td class="lbl">Modular / Rapid Deploy</td><td>Prefabricated and modular housing capability (Panellock system) — manufactured off-site, transported and assembled on location. Reduces on-site construction time by up to 50% in remote areas.</td></tr>
+        <tr><td class="lbl">Freight & Logistics</td><td>Established partnership with Sea Swift (barge freight — Cairns to Cape York/Torres Strait, weekly). Experience managing material supply to areas with limited road access, seasonal closures, and extreme remoteness.</td></tr>
+        <tr><td class="lbl">Community & Indigenous</td><td>Director Harsimran Singh has direct relationships in Cape York Indigenous communities. Committed to local employment, skills training, and genuine community engagement — not just contractor fly-in/fly-out.</td></tr>
+        <tr><td class="lbl">Adaptable Build Types</td><td>We don't specialise in one type — we adapt to whatever the project requires: residential, commercial, community facilities, infrastructure, NDIS/SDA housing, social housing, government contracts, private developments.</td></tr>
+        <tr><td class="lbl">Compliance</td><td>NCC/BCA compliance across all climate zones and wind regions. NATSPEC specifications. Understanding of Indigenous housing programs (NPARIH, National Partnership on Remote Housing). NDIS SDA design standards.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══ PROCESS ═══ -->
+  <div class="s s-grey">
+    <div class="s-bar"></div>
+    <div class="s-title">Our Process</div>
+    <div class="s-sub">From initial consultation to handover</div>
+
+    <div class="proc-row">
+      <div class="proc"><div class="num">01</div><h4>Consultation</h4><p>Understanding your vision, requirements, budget, and timeline.</p></div>
+      <div class="proc"><div class="num">02</div><h4>Design & Permits</h4><p>Architectural plans, engineering, soil testing, building permits — all managed.</p></div>
+      <div class="proc"><div class="num">03</div><h4>Construction</h4><p>Quality build with daily logs, photo updates, and full transparency via client portal.</p></div>
+      <div class="proc"><div class="num">04</div><h4>Handover</h4><p>Completed home that meets every specification. Defect-free with warranty support.</p></div>
+    </div>
+  </div>
+
+  <!-- ═══ VALUES ═══ -->
+  <div class="s">
+    <div class="s-bar"></div>
+    <div class="s-title">Our Values</div>
+
+    <div class="val-grid">
+      <div class="val-card"><h4>Integrity</h4><p>Honest pricing, transparent communication, no hidden costs.</p></div>
+      <div class="val-card"><h4>Innovation</h4><p>In-house digital PM platform, modern construction methods.</p></div>
+      <div class="val-card"><h4>Excellence</h4><p>Uncompromising quality standards in every build.</p></div>
+      <div class="val-card"><h4>Adaptability</h4><p>Any project, any location, any scale — we go where the work is.</p></div>
+    </div>
+  </div>
+
+  <!-- ═══ CONTACT ═══ -->
+  <div class="contact-bar">
+    <div>
+      <h3>Let's Build Together</h3>
+      <div class="sub">Nationwide Projects Investments Pty Ltd &bull; ABN 28 693 332 320</div>
+    </div>
+    <div class="c-info">
+      <div class="c-item"><div class="cl">Platform</div><div class="cv">nationwideprojects.app</div></div>
+      <div class="c-item"><div class="cl">Director</div><div class="cv">Harsimran Singh</div></div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
